@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+    api_server:
+        image: gossip-api:beta
+        environment:
+            - MONGO_URI=mongodb+srv://dbadmin:maP1HO4JZoxoG5bm@cluster0.zvuk7wj.mongodb.net/gossip?retryWrites=true&w=majority
+        ports:
+            - '4000:4000'
+
+    gossip_chat:
+        image: gossip-chat
+        environment:
+            - NEXT_PUBLIC_API_SERVER=http://localhost:4000
+        ports:
+            - '3000:3000'
